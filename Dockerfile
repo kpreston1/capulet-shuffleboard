@@ -1,8 +1,6 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.9
 
-WORKDIR /opt/build
-
 ENV OPENCV_VERSION="4.5.1"
 
 # Keeps Python from generating .pyc files in the container
@@ -13,6 +11,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 COPY . /app
+
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
 RUN apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends \
@@ -61,11 +64,6 @@ RUN apt-get -qq update \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
-
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["python", "src/main.py"]
