@@ -6,5 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    environment:
+      - OPENCV_VERSION=4.5.1
     volumes:
       - /opt/vc:/opt/vc
