@@ -1,2 +1,2 @@
 # capulet-shuffleboard
-Capulet Shuffleboard
+Capulet Shuffleboard represents a customized iteration of Electric Shuffle tailored for my home setup. The project unfolds by harnessing a suite of technologies, including the Raspberry Pi 4b, OpenCV, Docker, and more innovations on the horizon. The overarching objective is to seamlessly integrate these technologies, elevating the gaming experience within the comfort of my living space. As the project evolves, I delve into the practical applications and broader implications of weaving together this mix of hardware and software, aiming to craft an interactive and captivating shuffleboard setup.
